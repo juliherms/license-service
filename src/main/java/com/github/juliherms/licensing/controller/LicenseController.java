@@ -1,8 +1,10 @@
 package com.github.juliherms.licensing.controller;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 import com.github.juliherms.licensing.model.License;
 import com.github.juliherms.licensing.service.LicenseService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +32,15 @@ public class LicenseController {
             @PathVariable("organizationId") String organizationId,
             @PathVariable("licenseId") String licenseId){
 
-        License license = licenseService.getLicense(licenseId,organizationId);
+        License license = licenseService.getLicense(licenseId, organizationId);
+        //add hateoas
+        license.add(
+                linkTo(methodOn(LicenseController.class).getLicense(organizationId, license.getLicenseId())).withSelfRel(),
+                linkTo(methodOn(LicenseController.class).createLicense(organizationId, license, null)).withRel("createLicense"),
+                linkTo(methodOn(LicenseController.class).updateLicense(organizationId, license)).withRel("updateLicense"),
+                linkTo(methodOn(LicenseController.class).deleteLicense(organizationId, license.getLicenseId())).withRel("deleteLicense")
+        );
+
         return ResponseEntity.ok(license);
     }
 
@@ -77,7 +87,4 @@ public class LicenseController {
 
         return ResponseEntity.ok(licenseService.deleteLicense(licenseId,organizationId));
     }
-
-
-
-    }
+ }
