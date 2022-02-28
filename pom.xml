@@ -15,7 +15,7 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
-		<docker.image.prefix>ostock</docker.image.prefix>
+		<docker.image.prefix>juliherms</docker.image.prefix>
 	</properties>
 	<dependencies>
 		<!-- Health check -->
