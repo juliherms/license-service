@@ -19,3 +19,10 @@ curl --request POST \
 curl --request GET \
   --url http://localhost:8080/v1/organization/juliherms/license/1 \
   --cookie JSESSIONID=FF0D09BEA0E502D7B211FA9CA5E3F127
+  
+
+-- HEALTH CHECK
+
+curl --request GET \
+  --url http://localhost:8080/health \
+  --cookie JSESSIONID=FF0D09BEA0E502D7B211FA9CA5E3F127
