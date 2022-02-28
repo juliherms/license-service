@@ -1,0 +1,21 @@
+-- CREATE LICENSE
+
+curl --request POST \
+  --url http://localhost:8080/v1/organization/juliherms/license \
+  --header 'Accept-Language: en' \
+  --header 'Content-Type: application/json' \
+  --cookie JSESSIONID=FF0D09BEA0E502D7B211FA9CA5E3F127 \
+  --data '{
+	"id": 600,
+	"licenseId": "03392885",
+	"description": "Software Product",
+	"organizationId": "juliherms",
+	"productName": "Ostock",
+	"licenseType": "full"
+}'
+
+-- GET LICENSE
+
+curl --request GET \
+  --url http://localhost:8080/v1/organization/juliherms/license/1 \
+  --cookie JSESSIONID=FF0D09BEA0E502D7B211FA9CA5E3F127
